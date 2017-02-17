@@ -27,7 +27,7 @@ def dc_api():
             dc = DC()
             dc.name = request.values['name']
             dc.save()
-            return jsonify(result=True)
+            return jsonify(result=True, dc=dc)
         return jsonify(result=False)
     except Exception as exc:
         print(exc)
@@ -56,7 +56,7 @@ def rack_api():
             dc = DC.objects(id=ObjectId(json.loads(request.values['dc_id'])['$oid']))[0]
             rack.dc = dc
             rack.save()
-            return jsonify(result=True)
+            return jsonify(result=True, rack=rack)
         return jsonify(result=False)
     except Exception as exc:
         print(exc)
@@ -89,7 +89,7 @@ def server_api():
                 rack = Rack.objects(id=ObjectId(json.loads(request.values['rack_id'])['$oid']))[0]
                 server.rack = rack
                 server.save()
-                return jsonify(result=True)
+                return jsonify(result=True, server=server)
             else:
                 return jsonify(result=False)
         return jsonify(result=False)
@@ -130,7 +130,7 @@ def hdd_api():
                     server = Server.objects(id=ObjectId(json.loads(request.values['server_id'])['$oid']))[0]
                     hdd.server = server
                 hdd.save()
-                return jsonify(result=True)
+                return jsonify(result=True, hdd=hdd)
             else:
                 return jsonify(result=False)
         # Update HDD status
@@ -144,7 +144,7 @@ def hdd_api():
                 if 'status' in request.values:
                     hdd.status = request.values['status']
                 hdd.save()
-                return jsonify(result=True)
+                return jsonify(result=True, hdd=hdd)
         return jsonify(result=False)
     except Exception as exc:
         print(exc)
