@@ -1,12 +1,12 @@
 from admin_blueprint import AdminBlueprint
-# from app.common.models import HDD
-# from views import HDDView
+from app.common.models import DC, Rack, Server, HDD
+from views import DCView, HDDView
 
 
 # Define the blueprint: 'auth', set its url prefix: app.url/auth
 mod_admin = AdminBlueprint('admin', __name__)
 
-# mod_admin.add_view(HDDView(HDD))
+mod_admin.add_view(DCView(DC))
 
 # Set the route and accepted methods
 # @mod_admin.route('aa', methods=['GET', 'POST'])

@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from app import db
 from app.common.models import DC, Rack, Server, HDD
 import json
 from bson import ObjectId
