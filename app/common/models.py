@@ -21,9 +21,9 @@ class Server(db.Document):
 class HDD(db.Document):
     serial = db.StringField(unique=True, max_length=40)
     capacity = db.FloatField()
-    used = db.FloatField(max_length=40)
+    used = db.FloatField()
     server = db.ReferenceField(Server, reverse_delete_rule=3)
-    status = db.StringField(max_length=40)
+    status = db.StringField(max_length=255)
     location = db.StringField(max_length=10)
     creation_date = db.DateTimeField()
     modified_date = db.DateTimeField(default=datetime.utcnow())

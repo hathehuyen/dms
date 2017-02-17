@@ -15,12 +15,14 @@ def index():
 @mod_api.route('/dc', methods=['GET', 'POST'])
 def dc_api():
     try:
+        # Get data center list
         if request.method == 'GET':
             if '_id' in request.values:
                 dcs = DC.objects(id=ObjectId(json.loads(request.values['_id'])['$oid']))
             else:
                 dcs = DC.objects
             return jsonify(result=True, dcs=dcs)
+        # Create new data center
         if request.method == 'POST':
             dc = DC()
             dc.name = request.values['name']
@@ -37,6 +39,7 @@ def dc_api():
 @mod_api.route('/rack', methods=['GET', 'POST'])
 def rack_api():
     try:
+        # Get rack list
         if request.method == 'GET':
             if '_id' in request.values:
                 racks = Rack.objects(id=ObjectId(json.loads(request.values['_id'])['$oid']))
@@ -46,6 +49,7 @@ def rack_api():
             else:
                 racks = Rack.objects
             return jsonify(result=True, racks=racks)
+        # Create new rack
         if request.method == 'POST':
             rack = Rack()
             rack.name = request.values['name']
@@ -64,6 +68,7 @@ def rack_api():
 @mod_api.route('/server', methods=['GET', 'POST'])
 def server_api():
     try:
+        # Get server list
         if request.method == 'GET':
             if '_id' in request.values:
                 servers = Server.objects(id=ObjectId(json.loads(request.values['_id'])['$oid']))
@@ -75,6 +80,7 @@ def server_api():
             else:
                 servers = Server.objects
             return jsonify(result=True, servers=servers)
+        # Create new server
         if request.method == 'POST':
             if 'mac' in request.values:
                 server = Server()
@@ -97,6 +103,7 @@ def server_api():
 @mod_api.route('/hdd', methods=['GET', 'POST', 'PUT'])
 def hdd_api():
     try:
+        # Get HDD list
         if request.method == 'GET':
             if '_id' in request.values:
                 hdds = HDD.objects(id=ObjectId(json.loads(request.values['_id'])['$oid']))
@@ -108,6 +115,7 @@ def hdd_api():
             else:
                 hdds = HDD.objects
             return jsonify(result=True, hdds=hdds)
+        # Create new HDD
         if request.method == 'POST':
             if 'serial' in request.values:
                 hdd = HDD()
@@ -125,6 +133,7 @@ def hdd_api():
                 return jsonify(result=True)
             else:
                 return jsonify(result=False)
+        # Update HDD status
         if request.method == 'PUT':
             if 'serial' in request.values:
                 hdd = HDD.objects(serial=request.values['serial'])[0]
