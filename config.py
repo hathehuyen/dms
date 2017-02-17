@@ -1,0 +1,37 @@
+import os
+# Create dummy secrey key so we can use sessions
+# app.config['SECRET_KEY'] = '29384709238'
+# app.config['MONGODB_DB'] = 'dms'
+# app.config['MONGODB_HOST'] = '10.10.10.131'
+# app.config['MONGODB_PORT'] = 27017
+# app.config['MONGODB_USERNAME'] = 'dms'
+# app.config['MONGODB_PASSWORD'] = 'dmsvp9'
+
+# Statement for enabling the development environment
+DEBUG = True
+
+# Define the application directory
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
+# Application threads. A common general assumption is
+# using 2 per available processor cores - to handle
+# incoming requests using one and performing background
+# operations using the other.
+THREADS_PER_PAGE = 2
+
+# Enable protection agains *Cross-site Request Forgery (CSRF)*
+CSRF_ENABLED = True
+
+# Use a secure, unique and absolutely secret key for
+# signing the data.
+CSRF_SESSION_KEY = "secret"
+
+# Secret key for signing cookies
+SECRET_KEY = '29384709238'
+
+# Database
+MONGODB_DB = 'dms'
+MONGODB_HOST = '127.0.0.1'
+MONGODB_PORT = 27017
+MONGODB_USERNAME = 'dms'
+MONGODB_PASSWORD = 'dmsvp9'
