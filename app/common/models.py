@@ -1,4 +1,5 @@
 from app import db
+from datetime import datetime
 
 
 class DC(db.Document):
@@ -24,3 +25,11 @@ class HDD(db.Document):
     server = db.ReferenceField(Server, reverse_delete_rule=3)
     status = db.StringField(max_length=40)
     location = db.StringField(max_length=10)
+    creation_date = db.DateTimeField()
+    modified_date = db.DateTimeField(default=datetime.now)
+
+    def save(self, *args, **kwargs):
+        if not self.creation_date:
+            self.creation_date = datetime.now()
+        self.modified_date = datetime.now()
+        return super(HDD, self).save(*args, **kwargs)
