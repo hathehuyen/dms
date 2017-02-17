@@ -126,20 +126,16 @@ def hdd_api():
             else:
                 return jsonify(result=False)
         if request.method == 'PUT':
-            hdd = HDD.objects(serial=request.values['serial'])
             if 'serial' in request.values:
-                hdd.serial = request.values['serial']
-            if 'capacity' in request.values:
-                hdd.capacity = request.values['capacity']
-            if 'used' in request.values:
-                hdd.used = request.values['used']
-            if 'status' in request.values:
-                hdd.status = request.values['status']
-            if 'server_id' in request.values:
-                server = Server.objects(id=ObjectId(json.loads(request.values['server_id'])['$oid']))[0]
-                hdd.server = server
-            hdd.save()
-            return jsonify(result=True)
+                hdd = HDD.objects(serial=request.values['serial'])[0]
+                if 'capacity' in request.values:
+                    hdd.capacity = request.values['capacity']
+                if 'used' in request.values:
+                    hdd.used = request.values['used']
+                if 'status' in request.values:
+                    hdd.status = request.values['status']
+                hdd.save()
+                return jsonify(result=True)
         return jsonify(result=False)
     except Exception as exc:
         print(exc)

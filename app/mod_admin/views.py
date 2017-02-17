@@ -2,14 +2,16 @@ from flask_admin.contrib.mongoengine import ModelView
 
 
 class DCView(ModelView):
+    can_view_details = True
     column_filters = ['name']
 
 
 class RackView(ModelView):
+    can_view_details = True
     column_filters = ['name']
     form_ajax_refs = {
         'dc': {
-            'fields': ['name']
+            'fields': ['name', ]
         }
     }
 
