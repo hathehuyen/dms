@@ -30,7 +30,7 @@ def dc_api():
         return jsonify(result=False)
     except Exception as exc:
         print(exc)
-        print 'get data center error'
+        print 'data center error'
         print request.values
         return jsonify(result=False)
 
@@ -57,7 +57,7 @@ def rack_api():
         return jsonify(result=False)
     except Exception as exc:
         print(exc)
-        print 'get rack error'
+        print 'rack error'
         print request.values
         return jsonify(result=False)
 
@@ -77,14 +77,16 @@ def server_api():
                 servers = Server.objects
             return jsonify(result=True, servers=servers)
         if request.method == 'POST':
-            server = Server()
-            server.name = request.values['name']
-            server.ip = request.values['ip']
-            server.mac = request.values['mac']
-            rack = Rack.objects(id=ObjectId(json.loads(request.values['rack_id'])['$oid']))[0]
-            server.rack = rack
-            server.save()
-            return jsonify(result=True)
+            if 'mac' in request.values:
+                server = Server()
+                server.ip = request.values['ip']
+                server.mac = request.values['mac']
+                rack = Rack.objects(id=ObjectId(json.loads(request.values['rack_id'])['$oid']))[0]
+                server.rack = rack
+                server.save()
+                return jsonify(result=True)
+            else:
+                return jsonify(result=False)
         return jsonify(result=False)
     except Exception as exc:
         print(exc)
