@@ -1,11 +1,4 @@
 import os
-# Create dummy secrey key so we can use sessions
-# app.config['SECRET_KEY'] = '29384709238'
-# app.config['MONGODB_DB'] = 'dms'
-# app.config['MONGODB_HOST'] = '10.10.10.131'
-# app.config['MONGODB_PORT'] = 27017
-# app.config['MONGODB_USERNAME'] = 'dms'
-# app.config['MONGODB_PASSWORD'] = 'dmsvp9'
 
 # Statement for enabling the development environment
 DEBUG = True
