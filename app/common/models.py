@@ -23,3 +23,4 @@ class HDD(db.Document):
     used = db.FloatField(max_length=40)
     server = db.ReferenceField(Server, reverse_delete_rule=3)
     status = db.StringField(max_length=40)
+    location = db.StringField(max_length=10)
