@@ -26,10 +26,10 @@ class HDD(db.Document):
     status = db.StringField(max_length=40)
     location = db.StringField(max_length=10)
     creation_date = db.DateTimeField()
-    modified_date = db.DateTimeField(default=datetime.now)
+    modified_date = db.DateTimeField(default=datetime.utcnow())
 
     def save(self, *args, **kwargs):
         if not self.creation_date:
-            self.creation_date = datetime.now()
-        self.modified_date = datetime.now()
+            self.creation_date = datetime.utcnow()
+        self.modified_date = datetime.utcnow()
         return super(HDD, self).save(*args, **kwargs)
