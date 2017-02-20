@@ -23,6 +23,7 @@ class HDD(db.Document):
     capacity = db.FloatField()
     used = db.FloatField()
     server = db.ReferenceField(Server, reverse_delete_rule=3)
+    mount = db.StringField(max_length=40)
     status = db.StringField(max_length=255)
     location = db.StringField(max_length=10)
     creation_date = db.DateTimeField()
