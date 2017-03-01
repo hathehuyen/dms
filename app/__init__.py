@@ -9,6 +9,12 @@ db = MongoEngine()
 app = Flask(__name__)
 app.config.from_object('config')
 
+
+# Default
+@app.route("/", methods=['GET'])
+def default():
+    return "DMS"
+
 # init database
 db.init_app(app)
 
